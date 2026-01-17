@@ -4,10 +4,17 @@ import logica.espacio.Coordenada;
 import logica.espacio.Posicion;
 
 public class JugadorHumano extends Jugador{
+    private Tablero descriptivo;
 
-    protected JugadorHumano(IEntradaSalida gui) {
+    protected JugadorHumano(IEntradaSalida gui, Tablero descripcion) {
         super(gui);
-        
+        descriptivo = descripcion;
+    }
+
+    private void marcar(Barco b){
+        for(byte casilla = 0; casilla < b.getLongitud(); casilla++){
+            descriptivo.setCasilla(b.getCasilla(casilla).getFila(), b.getCasilla(casilla).getColumna(), Tablero.BARCO);
+        }
     }
 
     @Override
@@ -15,6 +22,7 @@ public class JugadorHumano extends Jugador{
         Barco barco;
         Posicion posicion;
 
+        gui.mostrarTablero(descriptivo.getEstado());
         do{
             posicion = gui.solicitarUbicacion(nombre, longitud);
             barco = new Barco(nombre, posicion, longitud);
@@ -24,6 +32,7 @@ public class JugadorHumano extends Jugador{
         }while(!isValido(barco));
 
         barcos.add(barco);
+        marcar(barco);
     }
 
     @Override

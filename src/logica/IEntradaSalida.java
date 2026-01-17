@@ -12,6 +12,8 @@ public interface IEntradaSalida {
 
     public void mostrarTableros(char[][] jugador, char[][] accion);
 
+    public void mostrarTablero(char[][] jugador);
+
     public void mostrarMensaje(String mensaje);
 
     public void mostrar(TIPO_MENSAJE tipoMensaje);
