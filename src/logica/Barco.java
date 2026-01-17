@@ -56,7 +56,7 @@ public class Barco {
     //Devuelve -1 si no se encuentra en esa coordenada
     public byte buscaBloque(Coordenada c){
         for(byte i = 0; i < casillas.length; i++)
-            if(casillas[i].equals(c))
+            if(casillas[i].getFila() == c.getFila() && casillas[i].getColumna() == c.getColumna())
                 return i;
         return -1;
     }
