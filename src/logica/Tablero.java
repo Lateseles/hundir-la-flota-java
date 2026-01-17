@@ -26,7 +26,7 @@ public class Tablero {
         return estado[fila][columna];        
     }
 
-    public boolean isDentro(byte fila, byte columna){
+    public static boolean isDentro(byte fila, byte columna){
         return    fila >= 0 && fila    < TOTAL_FILAS &&
                columna >= 0 && columna < TOTAL_COLUMNAS;
     }

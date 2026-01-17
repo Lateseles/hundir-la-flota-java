@@ -38,6 +38,14 @@ public class Barco {
         }
     }
 
+    public Coordenada getCasilla(byte indice){
+        return casillas[indice];
+    }
+
+    public byte getLongitud(){
+        return (byte)casillas.length;
+    }
+
     public boolean isVivo(){
         for(boolean elemento : isTocada)
             if(!elemento)
@@ -61,6 +69,7 @@ public class Barco {
         return nombre;
     }
 
+    
     @Override
     public String toString(){
         return nombre + ": " + Arrays.toString(casillas);

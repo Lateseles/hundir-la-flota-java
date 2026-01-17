@@ -46,4 +46,33 @@ public abstract class Jugador {
 
         return Tablero.DISPARO;
     }
+
+    protected boolean isValido(Barco barco){
+        final byte longitud = barco.getLongitud();
+        Iterator<Barco> it = barcos.iterator();
+
+        for(byte i = 0; i < longitud; i++){
+            final Coordenada actual = barco.getCasilla(i);            
+            final Coordenada[] casilla = { actual,
+                 new Coordenada((byte)(actual.getFila() - 1), actual.getColumna()),
+                 new Coordenada(actual.getFila(), (byte)(actual.getColumna() + 1)),
+                 new Coordenada((byte)(actual.getFila() + 1), actual.getColumna()),
+                 new Coordenada(actual.getFila(), (byte)(actual.getColumna() - 1)),
+                 };            
+
+            if(!Tablero.isDentro(actual.getFila(), actual.getColumna()))
+                return false;
+
+            for(byte j = 0; j < casilla.length; j++){
+                while(it.hasNext()){
+                    Barco b = it.next();
+                    if(b.buscaBloque(casilla[j]) >= 0)
+                        return false;
+                }
+            }       
+                    
+        }
+        return true;
+    }
+
 }
