@@ -24,4 +24,9 @@ public class Coordenada {
     public void setColumna(byte columna){
         this.columna = columna;
     }
+
+    @Override
+    public String toString(){
+        return String.format("(%d,%d)",fila, columna);
+    }
 }
