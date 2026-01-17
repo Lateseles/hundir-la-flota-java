@@ -22,6 +22,7 @@ public class Juego {
         boolean turnoHumano = true;           
         gui.mostrar(IEntradaSalida.TIPO_MENSAJE.BIENVENIDA);
 
+        gui.mostrarTableros(descriptivo.getEstado(), accion.getEstado());
         posicionarBarcos(humano);
         posicionarBarcos(maquina);
 
@@ -49,8 +50,8 @@ public class Juego {
         gui.mostrar(IEntradaSalida.TIPO_MENSAJE.DESPEDIDA);
     }
     
-    private void posicionarBarcos(Jugador jugador){
-        jugador.agregarBarco("Portaviones", (byte)5);
+    private void posicionarBarcos(Jugador jugador){        
+        jugador.agregarBarco("Portaviones", (byte)5);        
         jugador.agregarBarco("Acorazado", (byte)4);
         jugador.agregarBarco("Submarino", (byte)3);
         jugador.agregarBarco("Crucero", (byte)3);
