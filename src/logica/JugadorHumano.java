@@ -8,7 +8,7 @@ public class JugadorHumano extends Jugador{
 
     protected JugadorHumano(IEntradaSalida gui, Tablero descripcion) {
         super(gui);
-        descriptivo = descripcion;
+        descriptivo = descripcion;        
     }
 
     private void marcar(Barco b){

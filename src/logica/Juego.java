@@ -11,31 +11,34 @@ public class Juego {
 
     public Juego(IEntradaSalida gui){
         this.gui = gui;
-        humano = new JugadorHumano(gui);
-        maquina = new JugadorIa(gui);
         descriptivo = new Tablero();
         accion = new Tablero();
+        humano = new JugadorHumano(gui, descriptivo);
+        maquina = new JugadorIa(gui);       
     }
 
     public void Jugar(){    
         boolean continuarPartida = true; 
         boolean turnoHumano = true;           
         gui.mostrar(IEntradaSalida.TIPO_MENSAJE.BIENVENIDA);
-
-        gui.mostrarTableros(descriptivo.getEstado(), accion.getEstado());
+       
         posicionarBarcos(humano);
         posicionarBarcos(maquina);
 
-        while(continuarPartida){
+        while(continuarPartida){            
             if(turnoHumano){
+                gui.mostrarTableros(descriptivo.getEstado(), accion.getEstado());                
                 final Coordenada disparo = humano.dispara(accion);
+                gui.mostrarMensaje("Disparo Jugador");
                 final char resultado = maquina.golpeado(disparo);
                 accion.setCasilla(disparo.getFila(), disparo.getColumna(), resultado);                              
             } else{
+                gui.mostrarMensaje("Disparo Maquina");
                 final Coordenada disparo = maquina.dispara(descriptivo);
                 final char resultado = humano.golpeado(disparo);
                 descriptivo.setCasilla(disparo.getFila(), disparo.getColumna(), resultado); 
             }      
+            turnoHumano = !turnoHumano;
             
             if(maquina.isPerdido()){
                 gui.mostrar(IEntradaSalida.TIPO_MENSAJE.DERROTA);

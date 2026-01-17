@@ -7,10 +7,10 @@ import logica.espacio.Coordenada;
 
 public abstract class Jugador {    
     protected LinkedList<Barco> barcos;  
-    protected IEntradaSalida gui;
+    protected IEntradaSalida gui;    
 
     protected Jugador(IEntradaSalida gui){
-        this.gui = gui;
+        this.gui = gui;        
         barcos = new LinkedList<Barco>();        
     }
 
@@ -49,7 +49,7 @@ public abstract class Jugador {
 
     protected boolean isValido(Barco barco){
         final byte longitud = barco.getLongitud();
-        Iterator<Barco> it = barcos.iterator();
+        Iterator<Barco> it;
 
         for(byte i = 0; i < longitud; i++){
             final Coordenada actual = barco.getCasilla(i);            
@@ -62,8 +62,9 @@ public abstract class Jugador {
 
             if(!Tablero.isDentro(actual.getFila(), actual.getColumna()))
                 return false;
-
+            
             for(byte j = 0; j < casilla.length; j++){
+                it = barcos.iterator();
                 while(it.hasNext()){
                     Barco b = it.next();
                     if(b.buscaBloque(casilla[j]) >= 0)
