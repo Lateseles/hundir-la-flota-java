@@ -18,4 +18,20 @@ public class Tablero {
             Arrays.fill(estado[i], VACIO);
     }
 
+    public void setCasilla(byte fila, byte columna, char valor){
+        estado[fila][columna] = valor;
+    }
+
+    public char getValor(byte fila, byte columna){
+        return estado[fila][columna];        
+    }
+
+    public boolean isDentro(byte fila, byte columna){
+        return    fila >= 0 && fila    < TOTAL_FILAS &&
+               columna >= 0 && columna < TOTAL_COLUMNAS;
+    }
+
+    public char[][] getEstado(){
+        return estado;
+    }
 }
