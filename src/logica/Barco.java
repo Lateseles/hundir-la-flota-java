@@ -4,9 +4,9 @@ import java.util.Arrays;
 import logica.espacio.*;
 
 public class Barco {
-    String nombre;
-    Coordenada[] casillas;
-    boolean[] isTocada;
+    private String nombre;
+    private Coordenada[] casillas;
+    private boolean[] isTocada;
 
     public Barco(String nombre, Coordenada[] casillas){
         this.nombre = nombre;
@@ -55,6 +55,10 @@ public class Barco {
 
     public void tocaCasilla(byte indice){
         isTocada[indice] = true;
+    }
+
+    public String getNombre(){
+        return nombre;
     }
 
     @Override
