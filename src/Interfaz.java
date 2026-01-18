@@ -28,7 +28,53 @@ public class Interfaz {
         }
         return ok;
     }
-    public static void mensajes(String text){
+
+    public static void mensajes(String text) {
         System.out.println(text);
+    }
+
+    public static void mostrarTablero(char[][] c, char[][] d) {
+        // leyenda
+        System.out.println("                 MAQUINA                                          USUARIO");
+        System.out.print("   ");
+        for (int i = 0; i < 10; i++) {
+            System.out.print(" " + i + "  ");
+        }
+        // pinta casillas de maquina
+        System.out.print("      ");
+        for (int j = 0; j < 10; j++) {
+            System.out.print("  " + j + " ");
+        }
+
+        System.out.println();
+
+        // 3 espacios de separacion entre interfaz maquina y usuario
+
+        // pinta
+        for (int i = 0; i < 10; i++) {
+            System.out.print(i + " | ");
+
+            for (int j = 0; j < 10; j++) {
+                System.out.print(c[i][j] + " | ");
+            }
+            System.out.print("   ");
+            System.out.print(i + " | ");
+            for (int j = 0; j < 10; j++) {
+                System.out.print(d[i][j] + " | ");
+            }
+            System.out.println("   ");
+
+            for (int j = 0; j < 14; j++) {
+                System.out.print(" _ ");
+            }
+            System.out.print("     ");
+
+            for (int j = 0; j < 14; j++) {
+                System.out.print(" _ ");
+            }
+            System.out.println();
+
+        }
+
     }
 }
