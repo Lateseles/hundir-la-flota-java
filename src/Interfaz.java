@@ -1,50 +1,44 @@
 import java.util.Scanner;
 
-public class Interfaz {
-    public static void main(String[] args) {
+import logica.IEntradaSalida;
+import logica.espacio.*;
 
-        int posiciones = solicitarFilaColumna();
+public class Interfaz implements IEntradaSalida {
 
-        // Crear tablero de la máquina 
-        char[][] maquina = new char[10][10];
-         // Crear tablero del usuario
-        char[][] usuario = new char[10][10];
-
-        // Mostrar los dos tableros
-        mostrarTablero(maquina, usuario);
-    }
-
-    public static int solicitarFilaColumna() {
+    @Override
+    public Coordenada solicitarCoordenada() {
         Scanner t = new Scanner(System.in);
         int fila, columna;
         do {
-            mensajes("Dame una fila y una columna (0-9):");
+            mostrarMensaje("Dame una fila y una columna (0-9):");
             fila = t.nextInt();
             columna = t.nextInt();
         } while (!validar(fila, columna));
-        return fila * 10 + columna;
+        return new Coordenada((byte) fila, (byte) columna);
     }
 
-    public static boolean validar(int f, int c) {
+    public boolean validar(int f, int c) {
         boolean ok = true;
         if (f < 0 || f >= 10) {
-            mensajes("Fila fuera de rango");
+            mostrarMensaje("Fila fuera de rango");
             ok = false;
         }
         if (c < 0 || c >= 10) {
-            mensajes("Columna fuera de rango");
+            mostrarMensaje("Columna fuera de rango");
             ok = false;
         }
         return ok;
     }
 
-    public static void mensajes(String text) {
+    @Override
+    public void mostrarMensaje(String text) {
         System.out.println(text);
     }
 
-    public static void mostrarTablero(char[][] c, char[][] d) {
+    @Override
+    public void mostrarTableros(char[][] c, char[][] d) {
         // leyenda
-        System.out.println("                 MAQUINA                                          USUARIO");
+        System.out.println("                 USUARIO                                          ACCION");
         System.out.print("   ");
         for (int i = 0; i < 10; i++) {
             System.out.print(" " + i + "  ");
@@ -83,7 +77,63 @@ public class Interfaz {
             }
             System.out.println();
 
-        }
+        }        
+    }
 
+    @Override
+    public Posicion solicitarUbicacion(String nombreBarco, byte longitudBarco) {
+        Scanner t = new Scanner(System.in);
+        Coordenada casillaInicial;        
+        byte aux;
+
+        mostrarMensaje("Vas a situar el barco " + nombreBarco + " de longitud " + longitudBarco);
+        mostrarMensaje("Se te pedirá la casilla del barco y su orientacion");
+        casillaInicial = solicitarCoordenada();
+
+        mostrarMensaje("Introduzca la orientacion: 0 Norte, 1 Este, 2 Sur, 3 Oeste");
+        aux = t.nextByte();
+
+        return new Posicion(casillaInicial, Orientacion.values()[aux]);
+    }
+
+    @Override
+    public void mostrarTablero(char[][] jugador) {
+        System.out.print("   ");
+        for (int i = 0; i < 10; i++) {
+            System.out.print(" " + i + "  ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < 10; i++) {
+            System.out.print(i + " | ");
+
+            for (int j = 0; j < 10; j++) {
+                System.out.print(jugador[i][j] + " | ");
+            }
+            System.out.println();
+
+            for (int j = 0; j < 14; j++) {
+                System.out.print(" _ ");
+            }
+            System.out.println();
+        }
+    }
+
+    @Override
+    public void mostrar(TIPO_MENSAJE tipoMensaje) {
+        switch (tipoMensaje) {
+            case IEntradaSalida.TIPO_MENSAJE.BIENVENIDA:
+                mostrarMensaje("Bienvenido al hundir la flota");
+                break;
+            case IEntradaSalida.TIPO_MENSAJE.DERROTA:
+                mostrarMensaje("Has perdido la partida");
+                break;
+            case IEntradaSalida.TIPO_MENSAJE.DESPEDIDA:
+                mostrarMensaje("Fin del programa");
+                break;
+            case IEntradaSalida.TIPO_MENSAJE.VICTORIA:
+                mostrarMensaje("Enhorabuena has ganado la partida");
+                break;
+        }
     }
 }

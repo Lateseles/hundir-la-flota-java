@@ -17,7 +17,7 @@ public class Juego {
         maquina = new JugadorIa(gui);       
     }
 
-    public void Jugar(){    
+    public void jugar(){    
         boolean continuarPartida = true; 
         boolean turnoHumano = true;           
         gui.mostrar(IEntradaSalida.TIPO_MENSAJE.BIENVENIDA);
@@ -41,11 +41,11 @@ public class Juego {
             turnoHumano = !turnoHumano;
             
             if(maquina.isPerdido()){
-                gui.mostrar(IEntradaSalida.TIPO_MENSAJE.DERROTA);
+                gui.mostrar(IEntradaSalida.TIPO_MENSAJE.VICTORIA);
                 continuarPartida = false;
             }
             else if(humano.isPerdido()){
-                gui.mostrar(IEntradaSalida.TIPO_MENSAJE.VICTORIA);
+                gui.mostrar(IEntradaSalida.TIPO_MENSAJE.DERROTA);
                 continuarPartida = false;
             }
         }
