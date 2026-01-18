@@ -4,10 +4,10 @@ import logica.IEntradaSalida;
 import logica.espacio.*;
 
 public class Interfaz implements IEntradaSalida {
+    Scanner t = new Scanner(System.in);
 
     @Override
-    public Coordenada solicitarCoordenada() {
-        Scanner t = new Scanner(System.in);
+    public Coordenada solicitarCoordenada() {        
         int fila, columna;
         do {
             mostrarMensaje("Dame una fila y una columna (0-9):");
@@ -81,8 +81,7 @@ public class Interfaz implements IEntradaSalida {
     }
 
     @Override
-    public Posicion solicitarUbicacion(String nombreBarco, byte longitudBarco) {
-        Scanner t = new Scanner(System.in);
+    public Posicion solicitarUbicacion(String nombreBarco, byte longitudBarco) {        
         Coordenada casillaInicial;        
         byte aux;
 
