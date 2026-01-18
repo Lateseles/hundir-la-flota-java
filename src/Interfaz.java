@@ -2,11 +2,20 @@ import java.util.Scanner;
 
 public class Interfaz {
     public static void main(String[] args) {
-        Scanner t = new Scanner(System.in);
+
         int posiciones = solicitarFilaColumna();
+
+        // Crear tablero de la máquina 
+        char[][] maquina = new char[10][10];
+         // Crear tablero del usuario
+        char[][] usuario = new char[10][10];
+
+        // Mostrar los dos tableros
+        mostrarTablero(maquina, usuario);
     }
 
     public static int solicitarFilaColumna() {
+        Scanner t = new Scanner(System.in);
         int fila, columna;
         do {
             mensajes("Dame una fila y una columna (0-9):");
