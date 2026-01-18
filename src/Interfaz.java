@@ -28,4 +28,7 @@ public class Interfaz {
         }
         return ok;
     }
+    public static void mensajes(String text){
+        System.out.println(text);
+    }
 }
