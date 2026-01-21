@@ -22,16 +22,16 @@ public class Barco {
                 
         for(byte i = 0; i < longitud; i++){
             switch(inicial.getOrientacion()){
-                case Orientacion.NORTE:    
+                case NORTE:    
                     casillas[i] = new Coordenada((byte)(inicio.getFila() - i), inicio.getColumna());
                     break;
-                case Orientacion.ESTE:
+                case ESTE:
                     casillas[i] = new Coordenada(inicio.getFila(), (byte)(inicio.getColumna() + i) );
                     break;
-                case Orientacion.SUR:
+                case SUR:
                     casillas[i] = new Coordenada((byte)(inicio.getFila() + i), inicio.getColumna());                    
                     break;
-                case Orientacion.OESTE:                    
+                case OESTE:                    
                     casillas[i] = new Coordenada(inicio.getFila(), (byte)(inicio.getColumna() - i) );
                     break;
             }

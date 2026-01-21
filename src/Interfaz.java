@@ -121,16 +121,16 @@ public class Interfaz implements IEntradaSalida {
     @Override
     public void mostrar(TIPO_MENSAJE tipoMensaje) {
         switch (tipoMensaje) {
-            case IEntradaSalida.TIPO_MENSAJE.BIENVENIDA:
+            case BIENVENIDA:
                 mostrarMensaje("Bienvenido al hundir la flota");
                 break;
-            case IEntradaSalida.TIPO_MENSAJE.DERROTA:
+            case DERROTA:
                 mostrarMensaje("Has perdido la partida");
                 break;
-            case IEntradaSalida.TIPO_MENSAJE.DESPEDIDA:
+            case DESPEDIDA:
                 mostrarMensaje("Fin del programa");
                 break;
-            case IEntradaSalida.TIPO_MENSAJE.VICTORIA:
+            case VICTORIA:
                 mostrarMensaje("Enhorabuena has ganado la partida");
                 break;
         }
