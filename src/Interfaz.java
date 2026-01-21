@@ -30,6 +30,12 @@ public class Interfaz implements IEntradaSalida {
         return ok;
     }
 
+    public boolean validar(byte o){
+        if(o < 0 || o >= Orientacion.values().length)
+            return false;
+        return true;
+    }
+
     @Override
     public void mostrarMensaje(String text) {
         System.out.println(text);
@@ -89,8 +95,10 @@ public class Interfaz implements IEntradaSalida {
         mostrarMensaje("Se te pedirá la casilla del barco y su orientacion");
         casillaInicial = solicitarCoordenada();
 
-        mostrarMensaje("Introduzca la orientacion: 0 Norte, 1 Este, 2 Sur, 3 Oeste");
-        aux = t.nextByte();
+        do{
+            mostrarMensaje("Introduzca la orientacion: 0 Norte, 1 Este, 2 Sur, 3 Oeste");
+            aux = t.nextByte();
+        }while(!validar(aux));
 
         return new Posicion(casillaInicial, Orientacion.values()[aux]);
     }

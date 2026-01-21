@@ -29,6 +29,7 @@ public class JugadorIa extends Jugador{
 
     @Override
     public Coordenada dispara(Tablero accion) {
+        //TODO mejorar este método para volverlo inteligente
         return new Coordenada((byte)(Math.random() * 10), (byte)(Math.random() * 10));
     }
 
