@@ -144,3 +144,4 @@ public class Interfaz implements IEntradaSalida {
         }
     }
 }
+//comentario de prueba de Alexandra para provocar un conflicto
